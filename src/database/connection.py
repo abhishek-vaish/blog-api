@@ -1,8 +1,10 @@
 from tortoise import Tortoise
-from resources.helper import parser
+
+from config import settings
+
 
 TORTOISE_ORM = {
-    "connections": {"default": "sqlite://sqlite.dev.db"},
+    "connections": {"default": f"{settings.db_url}"},
     "apps": {
         "models": {
             "models": ["app.user.models", "app.blog.models", "aerich.models"],
@@ -13,7 +15,8 @@ TORTOISE_ORM = {
 
 
 async def connect_db():
+    """Connect Database"""
     await Tortoise.init(
-        db_url=parser["DEFAULT"]["DB_URL"],
+        db_url=f"{settings.db_url}",
         modules={"models": ["app.user.models", "app.blog.models", "aerich.models"]},
     )

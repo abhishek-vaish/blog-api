@@ -3,6 +3,8 @@ from tortoise import fields
 
 
 class BlogTortoise(Model):
+    """Blog Model"""
+
     title = fields.CharField(max_length=100, null=False)
     description = fields.TextField(null=False)
     user = fields.ForeignKeyField("models.UserTortoise", on_delete=fields.CASCADE)

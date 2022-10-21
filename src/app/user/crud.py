@@ -1,7 +1,6 @@
-from uuid import uuid4
-
 from fastapi import HTTPException, status
 from pydantic import ValidationError
+from uuid import uuid4
 
 from app.user.models import TokenTortoise, UserTortoise
 from app.user.schema import UserDBSchema, UserLogin, UserSchema, UpdateUserSchema
