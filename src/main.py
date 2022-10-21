@@ -10,7 +10,6 @@ from config import settings
 from database.connection import connect_db, TORTOISE_ORM
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="static"), name="static")
 
 register_tortoise(app, TORTOISE_ORM, generate_schemas=True, add_exception_handlers=True)
 
