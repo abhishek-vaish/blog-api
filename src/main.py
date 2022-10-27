@@ -19,6 +19,11 @@ async def startup():
     await Tortoise.generate_schemas()
 
 
+@app.get("/", name="default")
+def index():
+    return {"msg": "Welcome to FastAPI"}
+
+
 app.include_router(user_router, prefix="/api/v1/user")
 app.include_router(blog_router, prefix="/api/v1/blog")
 

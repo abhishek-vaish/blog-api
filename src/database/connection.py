@@ -16,6 +16,7 @@ TORTOISE_ORM = {
 
 async def connect_db():
     """Connect Database"""
+
     await Tortoise.init(
         db_url=f"{settings.db_url}",
         modules={"models": ["app.user.models", "app.blog.models", "aerich.models"]},

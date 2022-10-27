@@ -35,9 +35,7 @@ async def get_blog(user_id: int = Depends(verify_token)):
 
 @router.patch("/update/{id}", status_code=status.HTTP_200_OK, name="blog:update")
 async def update_blog(
-    id: int,
-    blog: UpdateBlogSchema,
-    user_id: int = Depends(verify_token)
+    id: int, blog: UpdateBlogSchema, user_id: int = Depends(verify_token)
 ):
     """URL: Update Blog"""
     if user_id:
@@ -47,9 +45,7 @@ async def update_blog(
 
 
 @router.delete(
-    "/delete/{id}",
-    status_code=status.HTTP_204_NO_CONTENT,
-    name="blog:delete"
+    "/delete/{id}", status_code=status.HTTP_204_NO_CONTENT, name="blog:delete"
 )
 async def delete_blog(id: int, user_id: int = Depends(verify_token)):
     """URL: Delete Blog"""
