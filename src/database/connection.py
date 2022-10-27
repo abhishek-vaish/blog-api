@@ -4,7 +4,16 @@ from config import settings
 
 
 TORTOISE_ORM = {
-    "connections": {"default": f"{settings.db_url}"},
+    "connections": {"default": {
+        "engine": "tortoise.backends.asyncpg",
+        "credentials": {
+            "database": f"{settings.database}",
+            "host": f"{settings.host}",
+            "password": f"{settings.password}",
+            "port": settings.port,
+            "user": f"{settings.user}",
+        }
+    }},
     "apps": {
         "models": {
             "models": ["app.user.models", "app.blog.models", "aerich.models"],
@@ -17,7 +26,4 @@ TORTOISE_ORM = {
 async def connect_db():
     """Connect Database"""
 
-    await Tortoise.init(
-        db_url=f"{settings.db_url}",
-        modules={"models": ["app.user.models", "app.blog.models", "aerich.models"]},
-    )
+    await Tortoise.init(TORTOISE_ORM)

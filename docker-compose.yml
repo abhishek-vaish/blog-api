@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  api:
+    build: .
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE=fastapi_blog_app
+      - HOST=postgres
+      - PORT=5432
+      - PASSWORD=example
+      - USER=postgres
+      - DEBUG=True
+    volumes:
+      - .:/blog-app
+
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: fastapi_blog_app
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+
+volumes:
+  postgres-db:

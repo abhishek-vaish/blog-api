@@ -8,7 +8,11 @@ ENVIRONMENT = os.getenv(ENVIRONMENT_VARIABLE, "development")
 class Settings(BaseSettings):
     """Environment variables declaration"""
 
-    db_url: str
+    database: str
+    host: str
+    password: str
+    user: str
+    port: int
     debug: bool
 
     class Config:
